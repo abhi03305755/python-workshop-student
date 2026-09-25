@@ -1,20 +1,50 @@
-from modules.result_calculator import calculate_percentage
-
-
-student_name = input("Enter student name: ")
-
-marks_python = float(input("Enter Python marks: "))
-marks_math = float(input("Enter Mathematics marks: "))
-marks_comm = float(input("Enter Communication marks: "))
+def input_student():
+    student_name=input("Enter the name:")
+    marks_python=float(input("Enter marks for python:")) 
+    marks_maths=float(input ("Enter marks for math:"))
+    marks_comm=float(input("Enter marks for communication:"))
+    dict_student_info={
+     "name":student_name,
+     "python_marks":marks_python,
+     "math_marks":marks_maths,
+     "comm_marks":marks_comm
+      }
+    return dict_student_info
+ 
+def calculate_percentage(marks_python,marks_math,marks_comm):
+    total = (marks_python+marks_math+marks_comm)
+    percentage=(total/300)*100
+    return percentage
 
 # TODO:
-# Import the calculate_percentage function
-# from your module
+def calculate_percentage(marks_sub1, marks_sub2, marks_sub3):
+    total=(marks_sub1+marks_sub2+marks_sub3)
+    percentage=(total/300)*100
+    return percentage
 
-# TODO:
-# Calculate the percentage using the imported function
+def calculate_grade(percentage):
+    grade=None
+    if percentage>=80:
+       grade="A"
+    elif percentage>=60:
+        grade="B"
+    elif percentage>=40:
+        grade="C"
+    else:
+        print("D")
 
-percentage = 0
-print("\n--- Result ---")
-print(f"Student: {student_name}")
-print(f"Percentage: {percentage}")
+    return grade
+if __name__=="__main__":
+    print("\n -- Result --")
+    student_info=input_student()
+    print("Student:",student_info["name"])
+    percentage=calculate_percentage(
+        student_info["python_marks"],
+        student_info["math_marks"],
+        student_info["comm_marks"])
+    print("Percentage", calculate_percentage(
+        student_info["python_marks"],
+        student_info["math_marks"],
+        student_info["comm_marks"]))
+    print(f"Grade: {calculate_grade(percentage=percentage)}")
+
